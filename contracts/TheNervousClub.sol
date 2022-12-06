@@ -12,7 +12,7 @@ contract TheNervousClub is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
   string public baseURI;
   string public baseExtension = ".json";
   uint256 public cost = 0.05 ether;
-  uint256 public maxSupply = 2;
+  uint256 public maxSupply = 2801;
   bool public paused = false;
 
   constructor(
@@ -29,14 +29,14 @@ contract TheNervousClub is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
   }
 
   // public
-  function mint(address _to, uint256 _mintAmount) public payable {
+  function mint(uint256 _mintAmount) public onlyOwner {
     uint256 supply = totalSupply();
     require(!paused);
     require(_mintAmount > 0);
     require(supply + _mintAmount <= maxSupply);
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
-      _safeMint(_to, supply + i);
+      _safeMint(msg.sender, supply + i);
     }
   }
 

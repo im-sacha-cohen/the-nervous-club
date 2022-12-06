@@ -1,6 +1,6 @@
 const fs = require('fs');
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const mnemonic = fs.readFileSync("./secrets/mnemonic.secret").toString().trim();
+const mnemonic = fs.readFileSync("./secrets/mnemonic-prod.secret").toString().trim();
 const POLYGON_API = fs.readFileSync("./secrets/api-polygon.secret").toString().trim();
 
 module.exports = {
@@ -10,6 +10,14 @@ module.exports = {
       network_id: "*",
       confirmations: 10,
       timeoutBlocks: 200,
+      skipDryRun: true,
+    },
+    polygon: {
+      provider: () => new HDWalletProvider(mnemonic, "https://polygon-rpc.com"),
+      network_id: "*",
+      confirmations: 10,
+      timeoutBlocks: 200,
+      gasPrice: 470000000000,
       skipDryRun: true,
     }
   },

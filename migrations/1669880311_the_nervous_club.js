@@ -1,5 +1,5 @@
 const TheNervousClub = artifacts.require('./TheNervousClub');
 
 module.exports = function(_deployer) {
-  _deployer.deploy(TheNervousClub, "TheNervousClub", "TNC", "ipfs://bafybeieusiuml4ymblzu4nuejbclkmde4jjhkb4wlfgbfmitaa4ix7lh3u/");
+  _deployer.deploy(TheNervousClub, "TheNervousClub", "TNC", "https://thenervousclub.sacha-cohen.fr/metadata/");
 };
